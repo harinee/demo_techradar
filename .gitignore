@@ -1,0 +1,29 @@
+# campr-injection-workshop
+derby.log
+*.iml
+*.ipr
+*.iws
+target
+.idea
+.sync
+.gradle
+build
+out
+
+# myHTML
+*.o
+*.so
+*.a
+*.swp
+*.swo
+bin/*
+.tags*
+docs/*
+*.dylib
+*.exe
+*~
+myhtml.pc
+uninstal.mk
+.vscode
+
+.talismanrc
