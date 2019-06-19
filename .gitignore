@@ -27,3 +27,7 @@ uninstal.mk
 .vscode
 
 .talismanrc
+
+*.DS_Store
+dependency-check-report.html
+local.properties

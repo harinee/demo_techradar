@@ -8,7 +8,8 @@ sourceCompatibility = 1.7
 
 buildscript {
     ext.versions = [
-            springBootVersion: "1.5.14.RELEASE"
+            springBootVersion: "1.5.21.RELEASE"
+           // springBootVersion: "2.1.5.RELEASE"
     ]
 
     repositories {
@@ -19,6 +20,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${versions.springBootVersion}")
     }
 }
+
 buildscript {
     repositories {
         mavenCentral()
@@ -32,7 +34,7 @@ apply plugin: 'org.owasp.dependencycheck'
 
 
 dependencyCheck {
-    failBuildOnCVSS=6
+    failBuildOnCVSS=10
 }
 
 
@@ -48,7 +50,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator:${versions.springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${versions.springBootVersion}")
 
+    compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5'
+//    compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5.20'
+
     compile 'com.h2database:h2:1.4.197'
 
     testCompile "junit:junit:4.12"
 }
+
