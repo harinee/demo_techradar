@@ -9,7 +9,9 @@ sourceCompatibility = 1.7
 buildscript {
     ext.versions = [
             springBootVersion: "1.5.21.RELEASE"
-           // springBootVersion: "2.1.5.RELEASE"
+
+            // fix for vulnerable FasterXML jackson-databind dependency
+            // springBootVersion: "2.1.5.RELEASE"
     ]
 
     repositories {
@@ -49,11 +51,12 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty:${versions.springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-actuator:${versions.springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${versions.springBootVersion}")
+    compile 'com.h2database:h2:1.4.197'
 
     compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5'
-//    compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5.20'
 
-    compile 'com.h2database:h2:1.4.197'
+//  fix for vulnerable Apache Struts
+//  compile group: 'org.apache.struts', name: 'struts2-core', version: '2.5.20'
 
     testCompile "junit:junit:4.12"
 }
