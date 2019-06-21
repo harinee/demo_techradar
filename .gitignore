@@ -27,6 +27,7 @@ uninstal.mk
 .vscode
 
 .talismanrc
+talisman_html_report/
 
 *.DS_Store
 dependency-check-report.html
