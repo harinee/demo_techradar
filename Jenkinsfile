@@ -8,7 +8,7 @@ pipeline {
       }
       post {
         always {
-             archiveArtifacts(artifacts: 'build/reports/spotbugs/main.html')
+        archiveArtifacts(artifacts: 'build/reports/spotbugs/main.html')
         }
       }  
       }
