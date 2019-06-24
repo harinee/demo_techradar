@@ -5,7 +5,12 @@ pipeline {
       steps {
         sh '''cd campr-injection-workshop/
 ./gradlew check'''
-        archiveArtifacts(artifacts: 'build/reports/spotbugs/main.html', allowEmptyArchive: true)
+      }
+      post {
+        always {
+             archiveArtifacts(artifacts: 'build/reports/spotbugs/main.html')
+        }
+      }  
       }
     }
   }
