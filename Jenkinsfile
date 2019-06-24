@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''cd campr-injection-workshop/
 ./gradlew check'''
+        archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
       }
     }
   }
