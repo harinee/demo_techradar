@@ -4,7 +4,7 @@ pipeline {
     stage('Static Analysis') {
       post {
         always {
-          archiveArtifacts 'build/reports/spotbugs/main.html'
+          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
 
         }
 
