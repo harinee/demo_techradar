@@ -11,7 +11,7 @@ pipeline {
         archiveArtifacts(artifacts: 'build/reports/spotbugs/main.html')
         }
       }  
-      }
+      
     }
   }
 }
