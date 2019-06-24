@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Static Analysis') {
       steps {
-        sh './gradlew check'
+        sh '''cd campr-injection-workshop/
+./gradlew check'''
       }
     }
   }
