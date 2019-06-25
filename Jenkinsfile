@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Pre-deployment') {
       parallel {
-        stage('Function'){
+        stages('Function'){
           stage('Build') {
             steps {
               echo 'Building'
