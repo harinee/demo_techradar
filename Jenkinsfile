@@ -4,24 +4,27 @@ pipeline {
     stage('Build') {
       parallel {
         stage('Build') {
-          post {
-            always {
-              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
-
-            }
-
-          }
           steps {
             echo 'Building'
           }
         }
         stage('SAST') {
+           post {
+            always {
+              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
+            }
+          }
           steps {
             sh '''cd campr-injection-workshop/
 ./gradlew check'''
           }
         }
         stage('Dependency check') {
+           post {
+            always {
+              archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
+            }
+          }
           steps {
             sh '''cd campr-injection-workshop
 ./gradlew dependencyCheckAnalyze'''
