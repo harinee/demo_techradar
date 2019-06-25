@@ -1,12 +1,19 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Pre-deployment') {
       parallel {
-        stage('Build') {
-          steps {
-            echo 'Building'
+        stage('Function'){
+          stage('Build') {
+            steps {
+              echo 'Building'
+            }
           }
+          stage('Unit tests') {
+            steps {
+             echo 'Unit testing'
+            }
+         }
         }
         stage('SAST') {
            post {
@@ -35,11 +42,6 @@ pipeline {
             sh 'echo "Secret scan"'
           }
         }
-      }
-    }
-    stage('Unit tests') {
-      steps {
-        echo 'Unit testing'
       }
     }
     stage('Deploy test env') {
