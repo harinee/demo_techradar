@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Pre-deployment') {
       parallel {
-        stages{
+        stage('Function'){
+          stages{
           stage('Build') {
             steps {
               echo 'Building'
@@ -14,6 +15,7 @@ pipeline {
              echo 'Unit testing'
             }
          }
+        }
         }
         stage('SAST') {
            post {
