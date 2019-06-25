@@ -3,19 +3,24 @@ pipeline {
   stages {
     stage('Pre-deployment') {
       parallel {
-        stage('Function'){
+        stage('Build tests'){
           stages{
-          stage('Build') {
-            steps {
-              echo 'Building'
+            stage('Build') {
+             steps {
+                echo 'Building'
+               }
+             }
+            stage('Unit tests') {
+              steps {
+               echo 'Unit testing'
+              }
+            }
+           stage('Integration tests') {
+             steps {
+              echo 'integration testing'
+              }
             }
           }
-          stage('Unit tests') {
-            steps {
-             echo 'Unit testing'
-            }
-         }
-        }
         }
         stage('SAST') {
            post {
