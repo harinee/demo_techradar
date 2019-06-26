@@ -43,8 +43,6 @@ pipeline {
 ./gradlew check'''
        }
       }
-     }
-    }
     stage('Dependency check') {
        post {
         always {
@@ -60,17 +58,16 @@ pipeline {
       steps {
         sh 'echo "Secret scan"'
       }
+     }
     }
     stage('Deploy test env') {
       steps {
         echo 'Test env ready'
       }
     }
-  stage('Functional tests | DAST') {
-     parallel {
-      stage('Build tests'){
-        stages{
-          stage('Functional tests') {
+    stage('Functional tests | DAST') {
+      parallel {
+        stage('Functional tests') {
           steps {
             echo 'Functional tests'
           }
@@ -78,9 +75,7 @@ pipeline {
         stage('DAST') {
           steps {
             echo 'ZAPing'
-            }
           }
-         }
         }
       }
     }
