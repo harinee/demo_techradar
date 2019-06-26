@@ -57,6 +57,7 @@ pipeline {
     stage('Secret scan') {
       steps {
         sh 'echo "Secret scan"'
+       }
       }
      }
     }
