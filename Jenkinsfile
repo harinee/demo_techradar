@@ -23,6 +23,18 @@ pipeline {
           }
         }
         stage('SAST') {
+        stages{
+          stage('SAST-C') {
+           post {
+            always {
+              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
+            }
+          }
+          steps {
+            sh '''flawfinder -F --html --quiet myhtml>flawfinderReport.html'''
+          }
+         }
+         stage('SAST-Java') {
            post {
             always {
               archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/'
@@ -32,6 +44,7 @@ pipeline {
             sh '''cd campr-injection-workshop/
 ./gradlew check'''
           }
+         }
         }
         stage('Dependency check') {
            post {
