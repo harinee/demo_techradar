@@ -27,7 +27,7 @@ pipeline {
           stage('SAST-C') {
            post {
             always {
-              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
+              archiveArtifacts 'flawfinderReport.html'
             }
           }
           steps {
@@ -64,6 +64,7 @@ pipeline {
         }
       }
     }
+   }
     stage('Deploy test env') {
       steps {
         echo 'Test env ready'
