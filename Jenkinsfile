@@ -23,7 +23,7 @@ pipeline {
           }
         }
         stage('SAST') {
-        stages{
+         stages{
           stage('SAST-C') {
            post {
             always {
@@ -43,6 +43,7 @@ pipeline {
           steps {
             sh '''cd campr-injection-workshop/
 ./gradlew check'''
+           }
           }
          }
         }
@@ -62,7 +63,6 @@ pipeline {
             sh 'echo "Secret scan"'
           }
         }
-      }
     }
    }
     stage('Deploy test env') {
