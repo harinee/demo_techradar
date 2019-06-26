@@ -31,7 +31,7 @@ pipeline {
             }
           }
           steps {
-            sh '''flawfinder -F --html --quiet myhtml>flawfinderReport.html'''
+            sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
           }
          }
          stage('SAST-Java') {
