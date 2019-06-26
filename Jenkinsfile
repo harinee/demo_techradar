@@ -35,7 +35,7 @@ pipeline {
      stage('SAST-Java project') {
        post {
         always {
-          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/'
+          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
         }
       }
       steps {
