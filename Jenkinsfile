@@ -25,6 +25,7 @@ pipeline {
         stage('SAST') {
            post {
             always {
+              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/'
               archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
             }
           }
