@@ -22,57 +22,55 @@ pipeline {
             }
           }
         }
-        stage('SAST') {
-         stages{
-          stage('SAST-C') {
-           post {
-            always {
-              archiveArtifacts 'flawfinderReport.html'
-            }
-          }
-          steps {
-            sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
-          }
-         }
-         stage('SAST-Java') {
-           post {
-            always {
-              archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/'
-            }
-          }
-          steps {
-            sh '''cd campr-injection-workshop/
+      stage('SAST-C project') {
+       post {
+        always {
+          archiveArtifacts 'flawfinderReport.html'
+        }
+      }
+      steps {
+        sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
+      }
+     }
+     stage('SAST-Java project') {
+       post {
+        always {
+          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/'
+        }
+      }
+      steps {
+        sh '''cd campr-injection-workshop/
 ./gradlew check'''
-           }
-          }
-         }
-        }
-        stage('Dependency check') {
-           post {
-            always {
-              archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
-            }
-          }
-          steps {
-            sh '''cd campr-injection-workshop
-./gradlew dependencyCheckAnalyze'''
-          }
-        }
-        stage('Secret scan') {
-          steps {
-            sh 'echo "Secret scan"'
-          }
-        }
+       }
+      }
+     }
     }
-   }
+    stage('Dependency check') {
+       post {
+        always {
+          archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
+        }
+      }
+      steps {
+        sh '''cd campr-injection-workshop
+./gradlew dependencyCheckAnalyze'''
+      }
+    }
+    stage('Secret scan') {
+      steps {
+        sh 'echo "Secret scan"'
+      }
+    }
     stage('Deploy test env') {
       steps {
         echo 'Test env ready'
       }
     }
-    stage('Functional tests') {
-      parallel {
-        stage('Functional tests') {
+  stage('Functional tests | DAST') {
+     parallel {
+      stage('Build tests'){
+        stages{
+          stage('Functional tests') {
           steps {
             echo 'Functional tests'
           }
@@ -80,7 +78,9 @@ pipeline {
         stage('DAST') {
           steps {
             echo 'ZAPing'
+            }
           }
+         }
         }
       }
     }
