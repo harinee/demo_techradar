@@ -51,9 +51,6 @@ buildscript {
 }
 
 apply plugin: "com.github.spotbugs"
-configurations {
-    spotbugsStylesheets { transitive false }
-}
 
 spotbugs {
     toolVersion '3.1.12'
@@ -63,10 +60,7 @@ spotbugs {
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
     reports {
         xml.enabled false
-        html {
-            enabled true
-            stylesheet resources.text.fromArchiveEntry(configurations.spotbugsStylesheets, 'fancy-hist.xsl')
-        }
+        html. enabled true
     }
 }
 
@@ -90,5 +84,4 @@ dependencies {
 
     testCompile "junit:junit:4.12"
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
-    spotbugsStylesheets "com.github.spotbugs:spotbugs:$spotbugs.toolVersion"
 }
