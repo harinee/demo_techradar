@@ -22,7 +22,7 @@ pipeline {
             }
           }
         }
-      stage('SAST-C project') {
+      stage('SAST') {
        //post {
         //always {
           //archiveArtifacts 'flawfinderReport.html'
@@ -33,18 +33,18 @@ pipeline {
         echo 'sast'
       }
      }
-     stage('SAST-Java project') {
+     //stage('SAST-Java project') {
        //post {
         //always {
           //archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
         //}
       //}
-      steps {
+    //  steps {
        // sh '''cd campr-injection-workshop/
 //./gradlew check'''
-        echo 'sast'
-       }
-      }
+     //   echo 'sast'
+   //    }
+  //    }
     stage('Dependency check') {
        //post {
         //always {
