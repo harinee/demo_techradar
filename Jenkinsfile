@@ -23,38 +23,35 @@ pipeline {
           }
         }
       stage('Static Security Analysis') {
-       //post {
-        //always {
-          //archiveArtifacts 'flawfinderReport.html'
-        //}
-      //}
+       post {
+        always {
+          archiveArtifacts 'flawfinderReport.html'
+        }
+      }
       steps {
-        //sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
-        echo 'sast'
+        sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
       }
      }
-     //stage('SAST-Java project') {
-       //post {
-        //always {
-          //archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
-        //}
-      //}
-    //  steps {
-       // sh '''cd campr-injection-workshop/
-//./gradlew check'''
-     //   echo 'sast'
-   //    }
-  //    }
-    stage('Dependency check') {
-       //post {
-        //always {
-          //archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
-        //}
-      //}
+     stage('SAST-Java project') {
+       post {
+        always {
+          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
+        }
+      }
       steps {
-        //sh '''cd campr-injection-workshop
-//./gradlew dependencyCheckAnalyze'''
-        echo 'depcheck'
+        sh '''cd campr-injection-workshop/
+./gradlew check'''
+       }
+      }
+    stage('Dependency check') {
+       post {
+        always {
+          archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
+        }
+      }
+      steps {
+        sh '''cd campr-injection-workshop
+./gradlew dependencyCheckAnalyze'''
       }
     }
     stage('Secret scan') {
