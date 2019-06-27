@@ -22,7 +22,7 @@ pipeline {
             }
           }
         }
-      stage('SAST') {
+      stage('Static Security Analysis') {
        //post {
         //always {
           //archiveArtifacts 'flawfinderReport.html'
@@ -76,7 +76,7 @@ pipeline {
             echo 'Functional tests'
           }
         }
-        stage('DAST') {
+        stage('Dynamic Security Analysis') {
           steps {
             echo 'ZAPing'
           }
