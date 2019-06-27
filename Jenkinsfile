@@ -22,7 +22,7 @@ pipeline {
             }
           }
         }
-      stage('Static Security Analysis') {
+      stage('SAST-C project') {
        post {
         always {
           archiveArtifacts 'flawfinderReport.html'
@@ -35,7 +35,7 @@ pipeline {
      stage('SAST-Java project') {
        post {
         always {
-          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
+          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/main.html'
         }
       }
       steps {
