@@ -23,35 +23,38 @@ pipeline {
           }
         }
       stage('SAST-C project') {
-       post {
-        always {
-          archiveArtifacts 'flawfinderReport.html'
-        }
-      }
+       //post {
+        //always {
+          //archiveArtifacts 'flawfinderReport.html'
+        //}
+      //}
       steps {
-        sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
+        //sh '''flawfinder -F --html --quiet --error-level=1 myhtml>flawfinderReport.html'''
+        echo 'sast'
       }
      }
      stage('SAST-Java project') {
-       post {
-        always {
-          archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
-        }
-      }
+       //post {
+        //always {
+          //archiveArtifacts 'campr-injection-workshop/build/reports/spotbugs/*.*'
+        //}
+      //}
       steps {
-        sh '''cd campr-injection-workshop/
-./gradlew check'''
+       // sh '''cd campr-injection-workshop/
+//./gradlew check'''
+        echo 'sast'
        }
       }
     stage('Dependency check') {
-       post {
-        always {
-          archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
-        }
-      }
+       //post {
+        //always {
+          //archiveArtifacts 'campr-injection-workshop/build/reports/dependency-check-report.html'
+        //}
+      //}
       steps {
-        sh '''cd campr-injection-workshop
-./gradlew dependencyCheckAnalyze'''
+        //sh '''cd campr-injection-workshop
+//./gradlew dependencyCheckAnalyze'''
+        echo 'depcheck'
       }
     }
     stage('Secret scan') {
